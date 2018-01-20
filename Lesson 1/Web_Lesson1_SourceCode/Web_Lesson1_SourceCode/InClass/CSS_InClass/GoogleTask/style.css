@@ -43,6 +43,14 @@ body {
   background-size: 528px 68px;
 }
 
+#menu-icon1 {
+  background-image: url("bell-icon.PNG");
+  /*width: 40px;
+  height: 40px;
+  /*background-position: -132px -38px;
+  background-size: 528px 68px;*/
+}
+
 #menu-icon:hover {
   opacity: 1;
 }
@@ -172,4 +180,29 @@ footer a {
 }
 footer a:hover {
   text-decoration: underline;
+}
+#most-visited {
+  margin: 0;
+  text-align: -webkit-center;
+  user-select: none;
+}
+
+
+.grid3x3{
+  width:300px;
+  height:300px;
+  clear:both;
+}
+.grid3x3>div{
+  width:100px;
+  height:100px;
+  float:left;
+  line-height:100px;
+  text-align:center;
+}
+.grid3x3>div>img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 80%;
+  max-height: 80%;
 }
