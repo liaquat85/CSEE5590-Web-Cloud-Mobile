@@ -1,0 +1,9 @@
+* {margin: 0; padding: 0; list-style: none; font-family: 'Segoe UI'; line-height: 1;}
+a {color: #fff; text-decoration: none; display: block;}
+.menu {display: inline-block; background-color: #999; position: relative;}
+.menu::after {content: " "; display: block; clear: both;}
+.menu > li {float: left;}
+.menu li a {padding: 15px;}
+.menu li:hover > a {background-color: #333;}
+.menu ul {display: none; background-color: #999; left: 0; right: 0; -webkit-column-count: 3; /* Chrome, Safari, Opera */ -moz-column-count: 3; column-count: 3;}
+.menu li:hover ul {display: block; position: absolute;}
