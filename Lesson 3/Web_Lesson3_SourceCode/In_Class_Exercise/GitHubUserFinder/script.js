@@ -1,17 +1,33 @@
 function getGithubInfo(user) {
     //1. Create an instance of XMLHttpRequest class and send a GET request using it. The function should finally return the object(it now contains the response!)
-
+    var xhttp = new XMLHttpRequest();
+    url = "https://api.github.com/users/" + user ;
+    xhttp.open('GET', url, false);
+    xhttp.send();
+    return xhttp;
 }
 
 function showUser(user) {
+    //var json = xhrReq.responseText;
+    //var myObject = JSON.parse(json);
+    //vmanvitha3
 
-    //2. set the contents of the h2 and the two div elements in the div '#profile' with the user content
+
+
+    //2. set the contents of the h2
+    $('h2').text("User Name:" + user.name)
+    // the two div elements in the div '#profile' with the user content
+var imagtag = '<img src="' + user.avatar_url + '">';
+    $('.avatar').append(imagtag);
+    $('.information').text("User ID:" + user.id);
+    $('.information').text("User Link:" + user.url);
+
 
 }
 
 function noSuchUser(username) {
     //3. set the elements such that a suitable message is displayed
-
+    $('h2').text("No user name with this ID" )
 
 }
 

@@ -2,12 +2,14 @@
 var colors = [ "22ac5e", "d68236", "71b5c2", "af2655", "b34de7", "e6bd01", "104393", "ca4d94", "4a772d", "c180a7", "958112", "8d2f8d" ]
 // sets the preview color to the one entered in the input and display its color code using setPreviewColor function
 function setPreviewColor(color) {
-    $('.preview').css('background-color', color);
-    $('.color-code').text($('.preview').css('background-color'));
+    $('.preview').css('background-color',color);
+    var previewColor=$('.preview').css('background-color');
+    $('.color-code').text(previewColor);
 }
 //adds color boxes to the favorite colors
 function addBox(color) {
-    $('#colors').prepend("<div class='item' style='background-color: " + color + ";'><div>");
+    var box='<div class="item" style="background-color: '+color+';"></div>';
+    return $('#colors').prepend(box);
 }
 
 
