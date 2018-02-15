@@ -1,0 +1,18 @@
+body
+{
+  background-color: #00FFFF;
+}
+
+.done
+{
+  text-decoration: line-through;
+  font-weight: bold;
+
+
+}
+
+.input-form
+{
+  border-top: dashed 3px;
+  padding-top: 1em;
+}
