@@ -21,12 +21,7 @@ header {
     top: -2px;
 }
 
-#container, #container1  {
-    width: 1040px;
-    margin: 0px auto;
-    min-height: 750px;
-    text-align: center;
-}
+
 
 input[type='text'] {
     height: 2.2em;

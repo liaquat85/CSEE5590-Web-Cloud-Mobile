@@ -126,7 +126,7 @@ function showNewsbyTopic(news) {
 
 
 
-function noSuchUser(news) {
+function noSuchNews(news) {
     //3. set the elements such that a suitable message is displayed
     $('h3').text("No such news with this topic")
 
@@ -153,7 +153,7 @@ $(document).ready(function () {
                 showNewsByCNN(JSON.parse(response2.responseText));
                 //showNewsByCNBC(JSON.parse(response3.responseText()));
             } else {
-                noSuchUser(topicname);
+                noSuchNews(topicname);
             }
         }
     })

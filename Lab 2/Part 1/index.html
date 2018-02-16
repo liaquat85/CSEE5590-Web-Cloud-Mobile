@@ -12,20 +12,35 @@
     <style>
         body { background-color: powderblue; }
         h2 {padding: 5px;text-align: left;color: black;}
+        .registration {text-align: center;font-size: 20px}
         .description1,.description2,.description3,.description4,.description5,.description6,.description7,.description8{text-align: left;color: black;}
         .author1,.author2,.author3,.author4, .author5,.author6,.author7,.author8 { color:red;text-align: left;}
         .publishedAt1, .publishedAt2, .publishedAt3, .publishedAt4, .publishedAt5, .publishedAt6, .publishedAt7, .publishedAt8 {color:black;text-align: left;}
         .url1,.url2,.url3,.url4, .url5,.url6,.url7,.url8 {text-align: left;}
         .headerseperator1, .headerseperator2 {text-align: left;color: black;font-size: 50px;}
+        .con {text-align: left;color: black;}
+        .container{
+            width: 900px;
+            margin: 0px auto;
+            min-height: 400px;
+            text-align: center;
+        }
     </style>
 
     <!--<script src="jquery.js"></script>-->
 </head>
 <body>
 <header>
+
     <h1>Find News</h1>
+
+    <a href="login_page.html"> <div class="registration"> Please click here for login</div></a>
+
 </header>
-<div id="container">
+
+
+
+<div class="container">
     <div class="search">
         <input id="topicname" placeholder="Enter to find news" type="text"></input>
     </div>
