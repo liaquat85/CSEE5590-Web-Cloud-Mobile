@@ -1,0 +1,76 @@
+# Part1: News App (using API)
+
+ ## 1.  Create an app which makes asynchronous calls to the BBC News API and displays the required content. The page should have provision to display news by
+### a. Topic (e.g.: BitCoin)
+### b. Source of news (e.g.: TechCrunch, acm.org, BBC News)
+### * When the user searches by topic or source or both, the relevant results should be displayed accordingly. 
+
+I have made the app using the same webpage that we used in the ICE in-class exercise for GitHub user finder. I have implemented the javascript file and use the classes concept to show the results. I have also used bootstrap so that I can show two columns side by side by showing the news by topic and by source. 
+
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/Part%201/1.JPG)  
+  
+
+### * Each result should at least contain headlines and image of their corresponding articles along with a timestamp of the published article. On clicking the image, the related article must be displayed in a new tab
+I have put all the details about the news in the different classes so that user can see the news, author name, description and also link to that news.
+
+```     <h2 class="title1"></h2><br>
+    <div class="author1"></div><br>
+    <div class="publishedAt1"></div><br>
+    <p class="description1"></p><br>
+    <div class="url1"></div><br>
+```
+
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/Part%201/2.JPG)
+### * Handle any unexpected values by displaying appropriate message
+
+
+For that purpose, I have used the simple text that no such news is there. 
+```
+function noSuchNews(news) {
+    //3. set the elements such that a suitable message is displayed
+    $('h3').text("No such news with this topic")
+
+}
+```
+
+
+
+2. The app should have the following
+a.	A registration page
+
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/Part%201/3.JPG)
+
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/Part%201/31.JPG)
+
+b.	A login page
+
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/Part%201/4.JPG)
+
+
+
+
+
+# Part 2 Develop a Tic-Tac-Toe game with Angular JS
+
+## 1. Define an empty board (3*3) [It can be any m*m, but minimum 3*3]
+I have defined the empty board of 3x3. 
+
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/1.JPG)
+
+## 2. Create 2 players [It can be any no of players but minimum 2]
+I have created two players and named each player as O and X. There is round button for each player that he must select first then he can put his tic on the board.
+
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/2.JPG)
+
+## 3. Create recursive method to fill the blocks until any of the players wins the game
+After one player clicks on the board then a message will appear "Waiting for Opponent" so that the second player must select the round button X first then he can put his tic on the board.
+
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/3.JPG)
+
+If any player put his tick two times in a row then alert message will appear saying that that is not his turn.
+
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/4.JPG)
+
+## End of game
+When any player wins in either straight three tics or diagonal then message will apear like below showing which player has won the game. 
+![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/5.JPG)

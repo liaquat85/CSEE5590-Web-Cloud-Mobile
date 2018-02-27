@@ -89,11 +89,11 @@ function showNewsbyTechCrunch(news) {
 function showNewsbyTopic(news) {
 
     //$('.headlines').text("Total Headlines are " + news.totalResults);
-    // $('li').each(function(index){
-    //     //$(this).text("Title is " + news.articles[index].title);
-    //     $(this).text("Title is " + news.articles[index].title);
-    //
-    // });
+    $('li').each(function(index){
+        //$(this).text("Title is " + news.articles[index].title);
+        $(this).text("Title is " + news.articles[index].title);
+
+    });
     $('.headerseperator1').text("By Topic");
     $('.title1').text(news.articles[0].title);
     $('.author1').text("By " + news.articles[0].author);
