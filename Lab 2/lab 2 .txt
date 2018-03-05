@@ -74,3 +74,653 @@ If any player put his tick two times in a row then alert message will appear say
 ## End of game
 When any player wins in either straight three tics or diagonal then message will apear like below showing which player has won the game. 
 ![](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/5.JPG)
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>News App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+    <script type="text/javascript" src="script.js"></script>
+    <style>
+        body { background-color: powderblue; }
+        h2 {padding: 5px;text-align: left;color: black;}
+        .registration {text-align: center;font-size: 20px}
+        .description1,.description2,.description3,.description4,.description5,.description6,.description7,.description8{text-align: left;color: black;}
+        .author1,.author2,.author3,.author4, .author5,.author6,.author7,.author8 { color:red;text-align: left;}
+        .publishedAt1, .publishedAt2, .publishedAt3, .publishedAt4, .publishedAt5, .publishedAt6, .publishedAt7, .publishedAt8 {color:black;text-align: left;}
+        .url1,.url2,.url3,.url4, .url5,.url6,.url7,.url8 {text-align: left;}
+        .headerseperator1, .headerseperator2 {text-align: left;color: black;font-size: 50px;}
+        .con {text-align: left;color: black;}
+        .container{
+            width: 900px;
+            margin: 0px auto;
+            min-height: 400px;
+            text-align: center;
+        }
+    </style>
+
+    <!--<script src="jquery.js"></script>-->
+</head>
+<body>
+<header>
+
+    <h1>HomePage: Find News </h1>
+
+
+
+    <a href="login_page.html"> <div class="registration"> Please click here for login</div></a>
+
+</header>
+
+
+
+<div class="container">
+    <div class="search">
+        <input id="topicname" placeholder="Enter to find news" type="text"></input>
+    </div>
+
+<div class="row">
+    <div class="col-lg-6">
+    <div class="headerseperator1"></div><br><br>
+        <!--<div class="urlText"></div>-->
+        <ul>
+        <li>
+            <h2 class="title"></h2><br>
+
+        </li>
+        </ul>
+
+        <h2 class="title1"></h2><br>
+        <div class="author1"></div><br>
+        <div class="publishedAt1"></div><br>
+        <p class="description1"></p><br>
+        <div class="url1"></div><br>
+        <h2 class="title2"></h2><br>
+    <div class="author2"></div><br>
+    <div class="publishedAt2"></div><br>
+    <p class="description2"></p><br>
+    <div class="url2"></div><br>
+
+    <h2 class="title3"></h2><br>
+    <div class="author3"></div><br>
+    <div class="publishedAt3"></div><br>
+    <p class="description3"></p><br>
+    <div class="url3"></div><br>
+
+    <h2 class="title4"></h2><br>
+    <div class="author4"></div><br>
+    <div class="publishedAt4"></div><br>
+    <p class="description4"></p><br>
+    <div class="url4"></div><br>
+    </div>
+    <div class="col-lg-6">
+        <div class="headerseperator2"></div><br><br>
+        <h2 class="title5"></h2><br>
+        <div class="author5"></div><br>
+        <div class="publishedAt5"></div><br>
+        <p class="description5"></p><br>
+        <div class="url5"></div><br>
+
+        <h2 class="title6"></h2><br>
+        <div class="author6"></div><br>
+        <div class="publishedAt6"></div><br>
+        <p class="description6"></p><br>
+        <div class="url6"></div><br>
+
+        <h2 class="title7"></h2><br>
+        <div class="author7"></div><br>
+        <div class="publishedAt7"></div><br>
+        <p class="description7"></p><br>
+        <div class="url7"></div><br>
+
+        <h2 class="title8"></h2><br>
+        <div class="author8"></div><br>
+        <div class="publishedAt8"></div><br>
+        <p class="description8"></p><br>
+        <div class="url8"></div><br>
+
+
+    </div>
+
+</div>
+</div>
+
+
+
+
+</body>
+</html>
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script>$('.message a').click(function(){
+        $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });</script>
+    <style>@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+    .login-page {
+        width: 360px;
+        padding: 8% 0 0;
+        margin: auto;
+    }
+    .form {
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 360px;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    .form input {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+    .form button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #4CAF50;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+    }
+    .form button:hover,.form button:active,.form button:focus {
+        background: #43A047;
+    }
+    .form .message {
+        margin: 15px 0 0;
+        color: #b3b3b3;
+        font-size: 12px;
+    }
+    .form .message a {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+    .form .register-form {
+        display: none;
+    }
+    .container {
+        position: relative;
+        z-index: 1;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .container:before, .container:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    .container .info {
+        margin: 50px auto;
+        text-align: center;
+    }
+    .container .info h1 {
+        margin: 0 0 15px;
+        padding: 0;
+        font-size: 36px;
+        font-weight: 300;
+        color: #1a1a1a;
+    }
+    .container .info span {
+        color: #4d4d4d;
+        font-size: 12px;
+    }
+    .container .info span a {
+        color: #000000;
+        text-decoration: none;
+    }
+    .container .info span .fa {
+        color: #EF3B3A;
+    }
+    body {
+        background: #76b852; /* fallback for old browsers */
+        background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+        background: -moz-linear-gradient(right, #76b852, #8DC26F);
+        background: -o-linear-gradient(right, #76b852, #8DC26F);
+        background: linear-gradient(to left, #76b852, #8DC26F);
+        font-family: "Roboto", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }</style>
+</head>
+<body>
+<div class="login-page">
+    <div class="form">
+        <form class="register-form">
+            <input type="text" placeholder="name"/>
+            <input type="password" placeholder="password"/>
+            <input type="text" placeholder="email address"/>
+            <button>create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+        <form class="login-form">
+            <input type="text" placeholder="username"/>
+            <input type="password" placeholder="password"/>
+            <button>login</button>
+            <p class="message">Not registered? <a href="course-registration.html">Create an account</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+function getNewsByTopic(user) {
+    //1. Create an instance of XMLHttpRequest class and send a GET request using it. The function should finally return the object(it now contains the response!)
+    var xhttp = new XMLHttpRequest();
+    //url = "https://api.github.com/users/" + user ;
+    url = "https://newsapi.org/v2/everything?q=" + user + "&sortBy=publishedAt&apiKey=d37a10c039ad4b9d98454bb573c8a301";
+
+    //$('.urlText').text(url);
+    xhttp.open('GET', url, false);
+    xhttp.send();
+    return xhttp;
+}
+
+function getNewsByBBC(user) {
+    //1. Create an instance of XMLHttpRequest class and send a GET request using it. The function should finally return the object(it now contains the response!)
+    var xhttp1 = new XMLHttpRequest();
+    //url = "https://api.github.com/users/" + user ;
+    url = "https://newsapi.org/v2/everything?q=" + user + "&sources=bbc-news&apiKey=d37a10c039ad4b9d98454bb573c8a301";
+
+    //$('.urlText').text(url);
+    xhttp1.open('GET', url, false);
+    xhttp1.send();
+    return xhttp1;
+}
+
+function getNewsByCNN(user) {
+    //1. Create an instance of XMLHttpRequest class and send a GET request using it. The function should finally return the object(it now contains the response!)
+    var xhttp2 = new XMLHttpRequest();
+    //url = "https://api.github.com/users/" + user ;
+    url = "https://newsapi.org/v2/everything?q=" + user + "&sources=cnn&apiKey=d37a10c039ad4b9d98454bb573c8a301";
+
+    //$('.urlText').text(url);
+    xhttp2.open('GET', url, false);
+    xhttp2.send();
+    return xhttp2;
+}
+
+function getNewsByCNBC(user) {
+    //1. Create an instance of XMLHttpRequest class and send a GET request using it. The function should finally return the object(it now contains the response!)
+    var xhttp3 = new XMLHttpRequest();
+    //url = "https://api.github.com/users/" + user ;
+    url = "https://newsapi.org/v2/everything?q=" + user + "&sources=cnbc&apiKey=d37a10c039ad4b9d98454bb573c8a301";
+
+    //$('.urlText').text(url);
+    xhttp3.open('GET', url, false);
+    xhttp3.send();
+    return xhttp3;
+}
+
+
+
+function getNewsByTechCrunch(user) {
+}
+
+function showNewsByBBC(news) {
+    $('.headerseperator2').text("By Source");
+    $('.title5').text("From BBC: "+ news.articles[0].title);
+    $('.author5').text("By " + news.articles[0].author);
+    $('.publishedAt5').text("Published at " + news.articles[0].publishedAt);
+    $('.description5').text(news.articles[0].description);
+    var urlsrc = '<a href="' + news.articles[0].url + '">Click here for more</a>';
+    $('.url5').append(urlsrc)
+}
+
+function showNewsByCNN(news) {
+
+    $('.title6').text("From CNN: "+ news.articles[0].title);
+    $('.author6').text("By " + news.articles[0].author);
+    $('.publishedAt6').text("Published at " + news.articles[0].publishedAt);
+    $('.description6').text(news.articles[0].description);
+    var urlsrc = '<a href="' + news.articles[0].url + '">Click here for more</a>';
+    $('.url6').append(urlsrc)
+}
+
+function showNewsByCNBC(news) {
+
+    $('.title7').text("From CNN: "+ news.articles[0].title);
+    $('.author7').text("By " + news.articles[0].author);
+    $('.publishedAt7').text("Published at " + news.articles[0].publishedAt);
+    $('.description7').text(news.articles[0].description);
+    var urlsrc = '<a href="' + news.articles[0].url + '">Click here for more</a>';
+    $('.url7').append(urlsrc)
+}
+
+function showNewsbyTechCrunch(news) {
+
+}
+
+
+function showNewsbyTopic(news) {
+
+    //$('.headlines').text("Total Headlines are " + news.totalResults);
+    $('li').each(function(index){
+        //$(this).text("Title is " + news.articles[index].title);
+        $(this).text("Title is " + news.articles[index].title);
+
+    });
+    $('.headerseperator1').text("By Topic");
+    $('.title1').text(news.articles[0].title);
+    $('.author1').text("By " + news.articles[0].author);
+    $('.publishedAt1').text("Published at " + news.articles[0].publishedAt);
+    $('.description1').text(news.articles[0].description);
+    var urlsrc = '<a href="' + news.articles[0].url + '">Click here for more</a>';
+    $('.url1').append(urlsrc)
+
+    $('.title2').text(news.articles[1].title);
+    $('.author2').text("By " + news.articles[1].author);
+    $('.publishedAt2').text("Published at " + news.articles[1].publishedAt);
+    $('.description2').text(news.articles[1].description);
+    var urlsrc = '<a href="' + news.articles[1].url + '">Click here for more</a>';
+    $('.url2').append(urlsrc)
+
+    $('.title3').text(news.articles[2].title);
+    $('.author3').text("By " + news.articles[2].author);
+    $('.publishedAt3').text("Published at " + news.articles[2].publishedAt);
+    $('.description3').text(news.articles[2].description);
+    var urlsrc = '<a href="' + news.articles[2].url + '">Click here for more</a>';
+    $('.url3').append(urlsrc)
+
+    $('.title4').text(news.articles[3].title);
+    $('.author4').text("By " + news.articles[3].author);
+    $('.publishedAt4').text("Published at " + news.articles[3].publishedAt);
+    $('.description4').text(news.articles[3].description);
+    var urlsrc = '<a href="' + news.articles[3].url + '">Click here for more</a>';
+    $('.url4').append(urlsrc)
+}
+
+
+
+function noSuchNews(news) {
+    //3. set the elements such that a suitable message is displayed
+    $('h3').text("No such news with this topic")
+
+}
+
+
+$(document).ready(function () {
+    $(document).on('keypress', '#topicname', function (e) {
+        //check if the enter(i.e return) key is pressed
+        if (e.which == 13) {
+            //get what the user enters
+            topicname = $(this).val();
+            //reset the text typed in the input
+            $(this).val("");
+            //get the user's information and store the respsonse
+            response0 = getNewsByTopic(topicname);
+            response1 = getNewsByBBC(topicname);
+            response2 = getNewsByCNN(topicname);
+            //response3 = getNewsByCNBC(topicname);
+            //if the response is successful show the user's details
+            if (response0.status == 200) {
+                showNewsbyTopic(JSON.parse(response0.responseText));
+                showNewsByBBC(JSON.parse(response1.responseText));
+                showNewsByCNN(JSON.parse(response2.responseText));
+                //showNewsByCNBC(JSON.parse(response3.responseText()));
+            } else {
+                noSuchNews(topicname);
+            }
+        }
+    })
+});
+
+
+
+// showNewsByCNN(JSON.parse(response2.responseText));
+// showNewsByCNBC(JSON.parse(response3.responseText));
+// showNewsByTechCrunch(JSON.parse(response4.responseText));
+
+//else display suitable message
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    border-top: 5px solid #4c4066;
+    margin: 0px auto;
+    font-size: 14px;
+    color: #666666;
+    font-size: 16px;
+}
+
+.strikeline{
+    text-decoration: line-through
+}
+header {
+    text-align: center;
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #e5e2e0;
+}
+
+#logo {
+    position: relative;
+    top: -2px;
+}
+
+
+
+input[type='text'] {
+    height: 2.2em;
+    font-size: 2em;
+    width: 50%;
+    padding: 5px;
+}
+
+.information, .avatar {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.information {
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+
+
+.search {
+    text-align: center;
+    margin: 80px auto;
+}
+
+
+
+.profile {
+    height: 130px;
+    width: 150px;
+    padding: 90px 30px 0;
+    display: block;
+    background-color: purple;
+    text-decoration: none;
+    color: white;
+    font-width: bold;
+}
+
+.profile:hover {
+    background-color: #b300b3;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Toe Game</title>
+    <link href="tic_tac.css" type="text/css" rel="stylesheet">
+    <script src="tic_tac.js"></script>
+
+    <script src="es5-shim.min.js"></script>
+    <script src="socket.io.js"></script>
+    <script src="sync.js"></script>
+</head>
+<body>
+<div ng-app="tictactoe" ng-controller="Game">
+    <p>You are:
+        <label>
+            <input type="radio" value="O" ng-model="player" /><strong>O</strong>
+        </label>
+        <label>
+            <input type="radio" value="X" ng-model="player" value="Clear Board" /><strong>X</strong>
+        </label>
+    </p>
+    <div ng-show="$ynchronized">
+        <h2 ng-show="currentPlayer == player">Your Turn</h2>
+
+        <h2 ng-show="currentPlayer != player">Waiting for Opponent</h2>
+
+        <h2 ng-show="winner">WINNER IS {{winner}}!! <input type="button" ng-click="newGame()" value="New Game" /></h2>
+
+        <table border="1">
+            <tr ng-repeat="row in [0,1,2]">
+                <td ng-repeat="column in [0,1,2]" ng-click="cellClick(row,column)" ng-class="cellClass(row,column)">{{cellText(row,column)}}</td>
+            </tr>
+        </table>
+    </div>
+    <div ng-hide="$ynchronized">
+        <h2>Synchronizing with Server</h2>
+    </div>
+</div>
+</body>
+</html>
+
+var tic = angular.module('tictactoe', ['synchroscope'])
+
+tic.controller('Game', function ($scope, $ync) {
+
+    // == initialize scope ==
+    $scope.currentPlayer = 'O'
+    $scope.player = 'O'
+    $scope.winner = null
+    $scope.board = [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
+    ]
+
+
+    // == sync scope variables ==
+    var keys = ['board', 'currentPlayer', 'winner']
+    $ync($scope, keys, 'http://synchroscope.herokuapp.com/synchroscope#tictactoe')
+
+
+    // == scope functions ==
+
+    $scope.cellClass = function (row, column) {
+        var value = cell(row, column)
+        return 'cell cell-' + value
+    }
+    $scope.cellText = function (row, column) {
+        var value = cell(row, column)
+        return value ? value : '-'
+    }
+    $scope.cellClick = function (row, column) {
+        if ($scope.winner) {
+            alert('Already game over.')
+            return
+        }
+        if ($scope.player != $scope.currentPlayer) {
+            alert('Not your turn.')
+            return
+        }
+        setCell(row, column, $scope.player)
+        checkBoard()
+        $scope.currentPlayer = nextPlayer($scope.currentPlayer)
+    }
+    $scope.newGame = function () {
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                setCell(i, j, null)
+            }
+        }
+        $scope.currentPlayer = 'O'
+        $scope.player = 'O'
+        $scope.winner = null
+    }
+
+
+    // == utility functions ==
+
+    // returns the value of cell
+    function cell(row, column) {
+        return $scope.board[row][column]
+    }
+
+    // sets the value of cell
+    function setCell(row, column, value) {
+        $scope.board[row][column] = value
+    }
+
+    // returns the next player
+    function nextPlayer(player) {
+        return {
+            O: 'X',
+            X: 'O'
+        }[player]
+    }
+
+    // checks the board and declare winner
+    function checkBoard() {
+        var winner, empty = false
+
+        // check for any empty cell
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                if (!cell(i, j)) empty = true
+            }
+        }
+
+        // no more empty cell - no winner
+        if (!empty) {
+            $scope.winner = 'NONE'
+            return
+        }
+
+        // check board vertically and horizontally
+        for (var i = 0; i < 3; i++) {
+            if (cell(i, 0) && cell(i, 0) == cell(i, 1) && cell(i, 1) == cell(i, 2)) {
+                winner = cell(i, 0)
+            }
+            if (cell(0, i) && cell(0, i) == cell(1, i) && cell(1, i) == cell(2, i)) {
+                winner = cell(0, i)
+            }
+        }
+
+        // check board diagonally
+        if (cell(0, 0) && cell(0, 0) == cell(1, 1) && cell(1, 1) == cell(2, 2)) {
+            winner = cell(0, 0)
+        }
+        if (cell(0, 2) && cell(0, 2) == cell(1, 1) && cell(1, 1) == cell(2, 0)) {
+            winner = cell(0, 2)
+        }
+
+        // winner? declare!
+        if (winner) {
+            $scope.winner = winner
+        }
+
+    }
+
+
+})
