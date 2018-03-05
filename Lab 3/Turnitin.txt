@@ -1,0 +1,80 @@
+ 1. Create an application which will display the desired videos based on the keywords entered by the user in the search tab (Hint: Youtube API)
+
+I have made a simple UI page in and used Bootstrap for managing the layout of the webpage. I have used the form for submission of the query for video and also made a div class for putting the results back on the webpage.
+
+```
+<div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form action="#">
+                    <p><input type="text" id="search" placeholder="Enter here ...." autocomplete="off" class="form-control" /></p>
+                    <p><input type="submit" value="Search" class="form-control btn btn-primary w100"></p>
+                </form>
+                <div id="results"></div>
+            </div>
+```
+![simpleUI](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%201/1.JPG)
+
+I have changed the colors in the Style.css file
+```
+body { background: #7FFFD4; }
+header { margin-top: 50px; }
+header a { color: #9400D3; text-decoration: none; }
+header a:hover { text-decoration: none; }
+form { margin-top: 20px; }
+form, #results { padding: 0 20px; }
+.item { margin-bottom: 25px; }
+.w100 { width: 100%; }
+
+.btn-primary { background: #228B22; border-color: #ADFF2F; }
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus { background: black;  border-color: #F0E68C; }
+```
+First I created a project in Google Console and then add YouTube API and get the key from that. A function I made initialize() which is used to connect to the YouTubeAPI. 
+```
+function initialize() {
+    gapi.client.setApiKey("#API KEY FROM GOOGLE");
+    gapi.client.load("youtube", "v3", function () {
+        // yt api is ready
+    });
+}
+```
+
+I created another function for the form when the form is submitted means when the search button is clicked then this function will run 
+
+```
+var req = gapi.client.youtube.search.list({
+            part: "snippet",
+            type: "video",
+
+            q: $("#search").val(),
+            maxResults: 5,
+            order: "relevance",
+            publishedAfter: "2010-01-01T00:00:00Z"
+        });
+```
+
+and the result is displayed 
+```
+  req.execute(function (response) {
+            var results = response.result;
+            $("#results").html("");
+            $.each(results.items, function (index, item) {
+                $.get("tpl/item.html", function (data) {
+                    $("#results").append(tplawesome(data, [{"title": item.snippet.title, "videoid": item.id.videoId}]));
+                });
+            });
+            resetVideoHeight();
+        });
+```
+I have made another html document which for layout for videos that comes through the JSON of the YouTubeAPI. 
+
+```
+<div class="item">
+    <h2>{{title}}</h2>
+    <iframe class="video w100" width="640" height="360" src="//www.youtube.com/embed/{{videoid}}" frameborder="0" allowfullscreen></iframe>
+</div>
+```
+The end result is as follows
+![output result](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%201/2.JPG)
+
+
+
