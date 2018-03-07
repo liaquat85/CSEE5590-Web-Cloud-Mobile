@@ -22,8 +22,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 
 
 // Get JSON data
-treeJSON = d3.json("backup.json", function(error, treeData) {
-
+//treeJSON = d3.json("treeData.json", function(error, treeData) {
+treeJSON = d3.json("Task2/input.json", function(error, treeData) {
     debugger;
 
     // Calculate total nodes, max label length
