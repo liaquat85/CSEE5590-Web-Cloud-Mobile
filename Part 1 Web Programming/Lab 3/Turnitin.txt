@@ -1,0 +1,165 @@
+
+# 1. Create an application which will display the desired videos based on the keywords entered by the user in the search tab (Hint: Youtube API)
+
+I have made a simple UI page in and used Bootstrap for managing the layout of the webpage. I have used the form for submission of the query for video and also made a div class for putting the results back on the webpage.
+
+```
+<div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form action="#">
+                    <p><input type="text" id="search" placeholder="Enter here ...." autocomplete="off" class="form-control" /></p>
+                    <p><input type="submit" value="Search" class="form-control btn btn-primary w100"></p>
+                </form>
+                <div id="results"></div>
+            </div>
+```
+![simpleUI](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%201/1.JPG)
+
+I have changed the colors in the Style.css file
+```
+body { background: #7FFFD4; }
+header { margin-top: 50px; }
+header a { color: #9400D3; text-decoration: none; }
+header a:hover { text-decoration: none; }
+form { margin-top: 20px; }
+form, #results { padding: 0 20px; }
+.item { margin-bottom: 25px; }
+.w100 { width: 100%; }
+
+.btn-primary { background: #228B22; border-color: #ADFF2F; }
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus { background: black;  border-color: #F0E68C; }
+```
+First I created a project in Google Console and then add YouTube API and get the key from that. A function I made initialize() which is used to connect to the YouTubeAPI. 
+```
+function initialize() {
+    gapi.client.setApiKey("#GOOGLEYOUTUBEAPIKEY"); // I have entered my Google API key here
+    gapi.client.load("youtube", "v3", function () {
+        // youtube API is ready now
+    });
+}
+```
+
+I created another function for the form when the form is submitted means when the search button is clicked then this function will run 
+
+```
+//used this function from documentation of youtube API
+var req = gapi.client.youtube.search.list({
+            part: "snippet",
+            type: "video",
+
+            q: $("#search").val(),
+            maxResults: 5,
+            order: "relevance",
+            publishedAfter: "2010-01-01T00:00:00Z"
+        });
+```
+
+and the result is displayed 
+```
+// to display the results in index.html  
+req.execute(function (response) {
+            var results = response.result;
+            $("#results").html("");
+            $.each(results.items, function (index, item) {
+                $.get("tpl/item.html", function (data) {
+                    $("#results").append(tplawesome(data, [{"title": item.snippet.title, "videoid": item.id.videoId}]));
+                });
+            });
+            resetVideoHeight();
+        });
+```
+I have made another html document which for layout for videos that comes through the JSON of the YouTubeAPI. 
+
+```
+<div class="item">
+    <h2>{{title}}</h2>
+    <iframe class="video w100" width="640" height="360" src="//www.youtube.com/embed/{{videoid}}" frameborder="0" allowfullscreen></iframe>
+</div>
+```
+The end result is as follows
+![output result](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%201/2.JPG)
+
+# 2. Get the twitter friends list using twitter API (https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/overview) and visualize them through D3.JS1.
+
+First I made an app in developers side of twitter.com. I get my API secret keys from there. First I install the npm library of twit for which the command is "npm install twitt". After that, I made an [Index.js](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%202/index.js) file. First I made a function for connecting to the server. 
+```
+var server = app.listen(3000, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+});
+```
+then I listen to port localhost:3000. which actually runs the file [index.html](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%202/public/index.html). 
+I have used the API keys from twitter here
+```
+var T = new Twit({
+    consumer_key: 'RFgBoK4ZioKHlDVesZ2EbBjJp',
+    consumer_secret: '7wnwY51LrRS6AtyJMGrDi7yXpSNEHMcNLcjHspieFlwQztMBjz',
+    access_token: '477630074-nOdC9Nb7GAh8VgdOEbkT44Z9geWQyqxZncI0DcaF',
+    access_token_secret: 'Pb7PLjd7jyyW2P0e8IMO4xHe0QwBDRTUvhqSZugR1Rl3Q'
+});
+```
+then I use the function app.post from twitter module to get the user entered by the user from Twitter.JSON that we get from twitter server.
+
+```
+app.post('/twitter/user', function (req, res) {
+    var username = req.body.username;
+    var twitJSON = {name: username, children: []};
+// to get friend list of entered user from twitter server
+T.get('friends/list', {screen_name: username}, function (err, data, response) {
+    if (err) throw err;
+    for (var i = 0; i < data['users'].length; i++) {
+        var obj = {name: "@" + data['users'][i]['screen_name'], children: []};
+        console.log(obj);
+        twitJSON.children.push(obj);
+    }
+    fs.writeFile("C:\\Users\\la5w7\\Desktop\\Spring 2018\\CSEE5590-Web-Cloud-Mobile\\Lab 3\\Task 2\\public\\input.json", JSON.stringify(twitJSON), function (err) {
+        if (err) throw err;
+        console.log('Twitter users written to file.');
+        // write to console to see whether the JSON file is created with friendlist 
+    });
+});
+
+//console.log(twitJSON);
+
+    var data = twitter.getUser({screen_name: username}, function (error, response, body) {
+        res.status(404).send({
+            "error": "User Not Found"
+        });
+    }, function (data) {
+        res.send({
+            result: {
+                "userData": data
+            }
+            // returns the data of the entered user to html file
+        });
+    });
+});
+```
+In the [index.html](https://github.com/liaquat85/CSEE5590-Web-Cloud-mobile/blob/master/Lab%203/Task%202/public/index.html) I have used this code to display the results that I get from javascript file.
+```
+<div class="row" ng-if="twitterErrors">
+        <div class="col-xs-12">
+          <div class="alert alert-danger">
+            {{twitterErrors}}
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:50px;" ng-if="results">
+        <div class="col-xs-12">
+          <p class="text-center"><img ng-src="{{results.profile_image_url}}"></p>
+          
+        <p class="text-center"> The number of Friends {{results.name}} has {{results.friends_count}} </p>
+        <p>The tree for {{results.name}} is <a href="index1.html"> Click here for Friends Tree</p>
+        </div>
+      </div>
+```
+
+the way the app works is first you have to run the server that is an index.js file. then you connect to localhost:3000 to listen to an index.html file which is as follows
+![1](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%202/1.JPG)
+you will enter the username then it will display the user profile pic along with the number of friends it has.
+![2](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%202/2.JPG)
+After that, you have to click on the link to get the D3 Visualization for username friendslist.
+![3](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%202/3.JPG)
+I have used the same D3 visualization files as I have used in the ICE6. The files are [dndtree.js](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%202/public/dndTree.js) and [index1.html](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%203/Task%202/public/index1.html)
+
+

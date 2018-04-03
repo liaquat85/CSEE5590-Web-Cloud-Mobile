@@ -1,0 +1,11 @@
+body { background: #7FFFD4; }
+header { margin-top: 50px; }
+header a { color: #9400D3; text-decoration: none; }
+header a:hover { text-decoration: none; }
+form { margin-top: 20px; }
+form, #results { padding: 0 20px; }
+.item { margin-bottom: 25px; }
+.w100 { width: 100%; }
+
+.btn-primary { background: #228B22; border-color: #ADFF2F; }
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus { background: black;  border-color: #F0E68C; }

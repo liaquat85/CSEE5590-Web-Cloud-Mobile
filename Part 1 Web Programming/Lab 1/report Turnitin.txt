@@ -1,0 +1,31 @@
+
+# Course Registration App
+Create a web page that provides option for choosing different levels of education (e.g. bachelors, masters) and semester (e.g. Spring, Fall, Summer) and career option (e.g. Computer Science, Law)
+## Choosing different levels
+I have used the <seelct> tag for choosing different options in drop-down menu. 
+```
+ <div class="col-md-3" >
+                Education
+            <select name="education">
+                <option value="bachelors">Bachelors</option>
+                <option value="master">Master</option>
+                <option value="phd">PhD</option>
+            </select></div>
+```
+I did same for education, semester and career option. Then I used a button so that one can submit the options and after that list of courses will appear according to the selection.
+![Selection First page](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%201/s1.JPG)
+
+
+
+## List of available classes 
+For that task, I used the <form> tag so that with the desired selection the list of courses would appear. Here I used just one course to showcase that adding different courses can be added to that. I displayed the relevant information such as instructors, course description, prerequisites, credit hours, duration etc along with reviews and rating for each course and instructor by previous students. I have also posted some similar links for MOOCs. 
+
+![Course Details](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%201/s2.JPG)
+
+
+## Adding an image
+I have added an image to the end of the table which has a description of the course so that one can just click on that and it will be forward the student to the registration page. In that page, the student can see how many students are registered for the course and how many seats are available. 
+
+![Course Registration](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%201/s3.JPG)
+
+I have used bootstrap to make the page responsive so that as we learned in Lesson 2, where the page is opened in different devices the page would adjust itself with the width and height. I have added all the necessary files in the GitHub folder of Lab1. You can check those files there. 

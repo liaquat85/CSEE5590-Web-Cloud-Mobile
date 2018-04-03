@@ -1,7 +1,0 @@
-Part I 25 MCQ 2 Mark each (all lectures till 7 ) total 50 marks
-
-
-Part II 25 Questions 2 marks each total 50 marks (include lectures till 6)
-1.Programming 1,2
-2.Debugging 1,2
-3.Execution 1,2

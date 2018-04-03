@@ -1,0 +1,52 @@
+
+
+h1 {
+    color: #747704;
+   
+    text-align: justify-all;
+    font-size: 40px;
+    text-align: right
+}
+h5{
+	text-align: right;
+}
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    text-align:center;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+}
+
+.right-text{
+	text-align: left;
+}
+.full-size {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+.quarter-size {
+  object-fit: contain;
+  height: 85%;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.atextceter{
+	text-align:center;
+	display:block;
+	color:#BCBBBB;
+}

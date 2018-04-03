@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+.btn submit{
+    color: #8a6d3b;
+    font-family: 'Open Sans', Serif;
+    font-size: large;
+}
+h1 {
+    color: #2aabd2;
+    font-family: 'Open Sans', Serif;
+    text-align: justify-all;
+}
+
+p {
+    font-family: 'Open Sans', Serif;
+    font-size: 20px;
+    color: #3e8f3e;
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    text-align:center;
+}
+
+.circle:before {
+    content: ' \25CF';
+    font-size: 20px;
+    color: green;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.form-dropdown option{
+
+    background-color: black;
+    border-bottom: 1px dotted silver
+}
