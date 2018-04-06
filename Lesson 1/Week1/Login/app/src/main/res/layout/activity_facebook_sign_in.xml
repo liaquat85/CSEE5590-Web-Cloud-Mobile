@@ -4,31 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.login.HomeActivity"
+    tools:context="com.example.android.login.FacebookSignIn"
     android:background="@mipmap/login">
 
-    <TextView
-        android:id="@+id/textView"
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="29dp"
-        android:layout_marginTop="102dp"
-        android:layout_weight="1"
-        android:text="Welcome to Home Page"
-        android:textColor="@android:color/white"
-        android:textSize="28sp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="152dp" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="188dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/home_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+
+        android:layout_below="@+id/lbl_Login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="22dp"
         android:onClick="backHome"
-        android:text="Home" />
+        android:text="Home"
+        />
+
 </RelativeLayout>

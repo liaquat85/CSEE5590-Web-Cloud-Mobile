@@ -13,14 +13,9 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
     }
 
-    public void backHome(View v) {
+    public void submit(View view){
+
         Intent redirect = new Intent(SignUp.this, MainActivity.class);
         startActivity(redirect);
     }
-
-    public void indexPage(View v) {
-        Intent redirect = new Intent(SignUp.this, IndexPage.class);
-        startActivity(redirect);
-    }
-
 }

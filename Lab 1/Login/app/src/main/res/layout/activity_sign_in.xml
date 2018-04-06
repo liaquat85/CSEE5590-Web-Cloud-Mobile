@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.login.SignIn"
-    android:background="@mipmap/login">
+    tools:context="com.example.android.login.SignIn">
 
 
     <Button
@@ -13,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="372dp"
+        android:layout_marginBottom="392dp"
         android:onClick="signInManual"
         android:text="Manual Login"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="284dp"
+        android:layout_marginBottom="300dp"
         android:onClick="signInFacebook"
         android:text="Login using facebook"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,12 +37,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="184dp"
+        android:layout_marginBottom="212dp"
         android:onClick="signInForegetPassword"
         android:text="Forget Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -57,11 +55,9 @@
         android:onClick="checkCredentials"
         android:text="Home"
         app:layout_constraintEnd_toEndOf="@+id/btn_sign_in_forget_password"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="@+id/btn_sign_in_forget_password"
-        tools:layout_editor_absoluteY="2dp" />
-
-
+        tools:layout_editor_absoluteY="342dp" />
 
 
 

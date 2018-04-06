@@ -5,22 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class SignUp extends AppCompatActivity {
+public class IndexPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_index_page);
     }
 
     public void backHome(View v) {
-        Intent redirect = new Intent(SignUp.this, MainActivity.class);
+        Intent redirect = new Intent(IndexPage.this, MainActivity.class);
         startActivity(redirect);
     }
-
-    public void indexPage(View v) {
-        Intent redirect = new Intent(SignUp.this, IndexPage.class);
-        startActivity(redirect);
-    }
-
 }
