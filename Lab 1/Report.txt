@@ -1,0 +1,351 @@
+# Create an Android application with following web pages:
+## 1. Welcome page to show the application name and should have two buttons as follows:
+### * Sign In
+### * SignUp
+I have made separate activities for each option. So the main page is as follows
+
+![Image1](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%201/1.JPG)
+
+as shown above, it has two option SignIn and SignUp. I have used a background image to give the application a new look. 
+The java code for the main application is
+```
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void signIn(View view) {
+        Intent redirect = new Intent(MainActivity.this, SignIn.class);
+           startActivity(redirect);
+
+    }
+
+    public void signUp(View view) {
+        Intent redirect = new Intent(MainActivity.this, SignUp.class);
+           startActivity(redirect);
+    }
+}
+```
+
+and XML code is 
+```
+       <Button
+        android:id="@+id/btn_sign_in"
+        android:layout_width="139dp"
+        android:layout_height="58dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="312dp"
+        android:onClick="signIn"
+        android:text="SIGN IN"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_sing_up"
+        android:layout_width="142dp"
+        android:layout_height="58dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="232dp"
+        android:onClick="signUp"
+        android:text="SIGN UP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/photo_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome Application"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.16"
+        android:textColor="@android:color/black"/>
+```
+as you can see I have created two new activities with xml file for each signin and signup and code for these activities
+
+## 2. On clicking Sign In button user should provide authentication details in two ways
+###  * manual login
+###  * Social Login using Facebook or Google or Twitter (I have used Facebook login)
+###  * Implement Forgot password feature
+
+for that part, I have implemented another activity which is like this
+
+![image2](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%201/2.JPG)
+
+All three option has their own activities files.
+### manual login code
+```
+
+public class SignInManual extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign_in_manual);
+    }
+
+    public void checkCredentials(View v) {
+        EditText userCtrl = (EditText)findViewById(R.id.text_uname);
+        EditText passwordCtrl = (EditText)findViewById(R.id.edit_psswd);
+        TextView errorText = (TextView)findViewById(R.id.lbl_Error);
+        String userName = userCtrl.getText().toString();
+        String password = passwordCtrl.getText().toString();
+
+        boolean validationFlag = false;
+        //Verify if the username and password are not empty
+
+        if(!userName.isEmpty() && !password.isEmpty()){
+            if(userName.equals("Admin")&& password.equals("Admin")){
+                validationFlag = true;
+            }
+        }
+        if(!validationFlag){
+            errorText.setVisibility(View.VISIBLE);
+
+        }
+        else {
+            //This code redirects from login page to homepage
+            //reDirectToHomePage(v);
+            Intent redirect = new Intent(SignInManual.this, HomeActivity.class);
+            startActivity(redirect);
+        }
+    }
+    public void checkCredentials1(View v) {
+        Intent redirect = new Intent(SignInManual.this, MainActivity.class);
+        startActivity(redirect);
+    }
+
+}
+
+    <TextView
+        android:id="@+id/lbl_Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
+
+
+    <EditText
+        android:id="@+id/text_uname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:hint="Username/Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_Login" />
+
+    <Button
+        android:id="@+id/btn_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="134dp"
+        android:layout_marginTop="134dp"
+        android:onClick="checkCredentials"
+        android:text="SIGN IN"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_psswd" />
+
+    <EditText
+        android:id="@+id/edit_psswd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/text_uname"
+        app:layout_constraintTop_toBottomOf="@+id/text_uname" />
+
+    <TextView
+        android:id="@+id/lbl_Error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="Invalid Credentials"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.835" />
+
+    <Button
+        android:id="@+id/home_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="60dp"
+
+        android:layout_marginTop="16dp"
+        android:onClick="checkCredentials1"
+        android:text="Home"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_Login"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+```
+
+
+### Facebook Signin
+![image3](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%201/3.JPG)```
+
+public class FacebookSignIn extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        setContentView(R.layout.activity_facebook_sign_in);
+
+        LoginUsingFacbookButton();
+    }
+
+
+    /*Code to login using Facebook */
+    private void LoginUsingFacbookButton() {
+        CallbackManager callbackManager = CallbackManager.Factory.create();
+        FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                redirectToSearchPage();
+            }
+            @Override
+            public void onCancel() {
+            }
+            @Override
+            public void onError(FacebookException error) {
+            }
+        };
+        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions(Arrays.asList("public_profile"));
+        loginButton.registerCallback(callbackManager, callback);
+
+
+    }
+
+public void redirectToSearchPage(){
+    Intent redirect = new Intent(FacebookSignIn.this, MainActivity.class);
+    startActivity(redirect);
+}
+
+
+}
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="188dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+```
+
+###  Implement Forgot password feature
+
+the screen for forget password feature is 
+![image4](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%201/4.JPG)
+```
+public class ForgetPassword extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_forget_password);
+    }
+    public void backHome(View v) {
+        Intent redirect = new Intent(ForgetPassword.this, MainActivity.class);
+        startActivity(redirect);
+    }
+}
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="383dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <EditText
+            android:id="@+id/album_description_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your email address"
+            android:inputType="textMultiLine"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btn_reset_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@color/colorAccent"
+            android:text="Reset Password"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/home_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/lbl_Login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:onClick="backHome"
+        android:text="Home" />
+
+```
+
+I have used Relative Layout and constraint layout and also linear layout so that I know these layouts.
+
+
+# 3. On clicking Sign Up button user
+### * Should have a form to take basic information from the user.
+my signup page is simple it just asking for email address and password.
+![image5](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%201/5.JPG)
+
+### * Takes the user to IndexPage
+on signup the user will be directed to the Index page. which is just the portfolio page of my website which is https://liaquat85.github.io/
+
+# 4. IndexPage
+### * Should have buttons like Go to Home Page, help, settings etc. (You can have more as  per  your  imagination  to  make  the  application  look  more  interactive  and  better) and should navigate to different pages when user click on these respective buttons
+In the index page I have just uploaded my github profile protfolio page https://liaquat85.github.io/
+
+![image6](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%201/6.JPG)
+
+
+The project is uploaded to git on this folder
+https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/tree/master/Lab%201/Login

@@ -17,7 +17,7 @@ public class HomeAfterSignUp extends AppCompatActivity {
         textView2.setText("Signup Complete. Click Home Button");
     }
 
-    public void checkCredentials(View v) {
+    public void backHome(View v) {
         Intent redirect = new Intent(HomeAfterSignUp.this, MainActivity.class);
         startActivity(redirect);
     }

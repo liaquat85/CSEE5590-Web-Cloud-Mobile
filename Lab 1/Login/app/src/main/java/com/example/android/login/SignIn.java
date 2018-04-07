@@ -31,10 +31,9 @@ public class SignIn extends AppCompatActivity {
 
     }
 
-    public void checkCredentials(View v) {
+    public void backHome(View v) {
         Intent redirect = new Intent(SignIn.this, MainActivity.class);
         startActivity(redirect);
     }
-
 
 }

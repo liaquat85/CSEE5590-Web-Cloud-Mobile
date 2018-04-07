@@ -14,7 +14,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    public void checkCredentials(View v) {
+    public void backHome(View v) {
         Intent redirect = new Intent(HomeActivity.this, MainActivity.class);
         startActivity(redirect);
     }

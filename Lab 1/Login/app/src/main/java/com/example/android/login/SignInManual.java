@@ -41,7 +41,7 @@ public class SignInManual extends AppCompatActivity {
             startActivity(redirect);
         }
     }
-    public void checkCredentials1(View v) {
+    public void backHome(View v) {
         Intent redirect = new Intent(SignInManual.this, MainActivity.class);
         startActivity(redirect);
     }
