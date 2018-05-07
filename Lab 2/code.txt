@@ -1,0 +1,209 @@
+# PART II
+## Create a mobile application with the following requirements. The application should have good UI/UX.
+## 1. Create an app that recognizes the facial features in a given picture and gives details about the status of their eyes and smile etc.This will be a good place to start. Use your own image input. Optional: Add face tracking feature that detects faces in a given video in your app. 
+I have used mostly the tutorial from the Google Mobile Vision tutorial. I tried to work on File-explorer that User may be able to upload a image but I could not do that. Can you please teach us the File-Explorer library that how can we add files from the SD card or Mobile drive into our program.
+First you need to add the google play services to build.gradle file
+
+``` compile 'com.google.android.gms:play-services-vision:8.1.0' ```
+
+then you need to add the meta-data in the AndroindManifest.xml
+
+``` <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="face"/> ```
+
+Now you need to code for the layout. For that purpose I just made a button and imagevie. Image is hard coded in the program and the way I program the button is when you click the face features would be detected and then I create bunch of views for the requirement of the assignment which are status of their eyes and smile probablity. 
+```
+<Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Scan Face"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Scan Results:"
+        android:textAllCaps="false"
+        android:textStyle="normal|bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"/>
+
+            <ImageView
+                android:id="@+id/scannedResults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+    </ScrollView>
+```
+
+Now the part of coding comes which is doen in MainAcitivity file. I first find the button and image by findviewbyid 
+
+```
+Button button = (Button) findViewById(R.id.button);
+        scanResults = (TextView) findViewById(R.id.results);
+        imageView = (ImageView) findViewById(R.id.scannedResults);
+```
+
+and then apply a detector 
+```
+detector = new FaceDetector.Builder(getApplicationContext())
+                .setTrackingEnabled(false)
+                .setLandmarkType(FaceDetector.ALL_LANDMARKS)
+                .setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)
+                .build();
+```
+after applying the detector I used the bitmap and paint and Frame to draw the image along with the face detected in rectangle shape
+```
+float scale = getResources().getDisplayMetrics().density;
+            Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            paint.setColor(Color.rgb(255, 61, 61));
+            paint.setTextSize((int) (14 * scale));
+            paint.setShadowLayer(1f, 0f, 1f, Color.WHITE);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(3f);
+            Canvas canvas = new Canvas(editedBitmap);
+            canvas.drawBitmap(bitmap, 0, 0, paint);
+            Frame frame = new Frame.Builder().setBitmap(editedBitmap).build();
+            SparseArray<Face> faces = detector.detect(frame);
+            scanResults.setText(null);
+```
+
+and put the values for the eyes and propbability of smile as 
+```
+scanResults.setText(scanResults.getText() + "Face " + (index + 1) + "\n");
+                scanResults.setText(scanResults.getText() + "Smile probability:" + "\n");
+                scanResults.setText(scanResults.getText() + String.valueOf(face.getIsSmilingProbability()) + "\n");
+                scanResults.setText(scanResults.getText() + "Left Eye Open Probability: " + "\n");
+                scanResults.setText(scanResults.getText() + String.valueOf(face.getIsLeftEyeOpenProbability()) + "\n");
+                scanResults.setText(scanResults.getText() + "Right Eye Open Probability: " + "\n");
+                scanResults.setText(scanResults.getText() + String.valueOf(face.getIsRightEyeOpenProbability()) + "\n");
+                scanResults.setText(scanResults.getText() + "---------" + "\n"); 
+```
+
+and if there is no view then 
+
+```
+imageView.setImageBitmap(editedBitmap);
+                scanResults.setText(scanResults.getText() + "No of Faces Detected: " + "\n");
+                scanResults.setText(scanResults.getText() + String.valueOf(faces.size()) + "\n");
+                scanResults.setText(scanResults.getText() + "---------" + "\n");
+            }
+```
+
+also add intent if user want to take picture from camera of mobile 
+```
+Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File photo = new File(Environment.getExternalStorageDirectory(), "picture.jpg");
+        imageUri = FileProvider.getUriForFile(MainActivity.this,
+                BuildConfig.APPLICATION_ID + ".provider", photo);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        startActivityForResult(intent, PHOTO_REQUEST);
+```
+
+## 2.	Represent the results obtained in interesting views and layouts
+the UI for the hardcoded image. 
+
+Image 3 nand image 4 
+
+
+
+# Part I:
+## Step Counter App
+### Create a mobile application with the following requirements. 
+### The main activity should display a simple UI like this.
+I have created a new layout file for this purpose and the code for that file is 
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        />
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Pedometer"
+        />
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop Pedometer"
+        />
+</LinearLayout>
+```
+It's just a simple linear layout with one text view for printing the number of steps and two buttons one for starting the counter for step and one for stopping the counting of steps.
+
+![UI ](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/1.png)
+ 
+### 3. When a user clicks on start pedometer, moves around the app should count the steps. When the stop pedometer button is clicked the count should stop irrespective of motion. 
+Since this needs an android phone which I do not have I am using the picture given in the instructions of the assignment.
+
+![Counted Step](https://github.com/liaquat85/CSEE5590-Web-Cloud-Mobile/blob/master/Lab%202/2.png)
+
+### 4.	Follow the TODO instructions given in the MainActivity.java file 
+the code snippets for TODO are as follows
+```
+        // TODO: 1. Get an instance of the SensorManager and assign it to the variable 'sensorManager'
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+                    //Also get an instance of approriate sensor and assign it the variable 'sensor'
+        //TODO: 2. Create an instance of StepDetector &assign it to variable 'simpleStepDetector' and register a listener on it
+        simpleStepDetector = new StepDetector();
+        simpleStepDetector.registerListener(this);
+        //TODO: 3. Get the views from the activity_main.xml and assign to variables 'TvSteps','BtnStart','BtnStop' variables suitably
+        TvSteps = (TextView) findViewById(R.id.tv_steps);
+        BtnStart = (Button) findViewById(R.id.btn_start);
+        BtnStop = (Button) findViewById(R.id.btn_stop);
+```
+the code is just making manager to manage the sensor and then selecting the accelerometer and then make a new function on for stepdetector from the class and in the end just showing the number of steps it counted on the UI.
